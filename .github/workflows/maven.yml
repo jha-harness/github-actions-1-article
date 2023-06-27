@@ -36,9 +36,9 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}      
     
     - name: Run the image in a container
-      uses: cmakkaya/my-github-action-app
+      uses: cmakkaya/my-github-action-app:latest
       with:
-        image: ${{ secrets.DOCKERHUB_USERNAME }}/my-github-action-app
+        image: ${{ secrets.DOCKERHUB_USERNAME }}/my-github-action-app:latest
         run: |
           echo "runing the docker image"
           echo "Testing the java app endpoints"
