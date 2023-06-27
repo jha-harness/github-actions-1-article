@@ -1,13 +1,13 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: project cicd flow
+name: GitHub Action CI/CD pipeline flow
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: javatechie/springboot-images-new
+        image: cmakkaya/my-github-action-app
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile
