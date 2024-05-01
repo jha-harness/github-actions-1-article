@@ -29,7 +29,7 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: jhaharness/my-github-action-app:${{ github.sha }}
+        image: jhaharness/my-github-action-app
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile
@@ -39,7 +39,7 @@ jobs:
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: 'jhaharness/my-github-action-app:${{ github.sha }}'
+        image-ref: 'jhaharness/my-github-action-app'
         format: 'table'
         exit-code: '1'
         ignore-unfixed: true
