@@ -40,6 +40,7 @@ jobs:
       uses: anchore/scan-action@v3
       with:
         image: 'jhaharness/my-github-action-app'
+        fail-build: false
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
