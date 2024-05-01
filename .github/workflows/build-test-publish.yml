@@ -17,6 +17,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Bearer SAST 
+    - uses: bearer/bearer-action@v2
+    
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -25,7 +29,10 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean install
-
+      
+    - name: Test
+      run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
+        
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
@@ -38,9 +45,13 @@ jobs:
 
     - name: Scan image
       uses: anchore/scan-action@v3
+      id: scan
       with:
         image: 'jhaharness/my-github-action-app'
         fail-build: false
+        
+    - name: Inspect action SARIF report
+      run: cat ${{ steps.scan.outputs.sarif }}
 
     - name: Run Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@master
