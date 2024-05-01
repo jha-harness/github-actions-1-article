@@ -43,9 +43,12 @@ jobs:
 
     - name: SAST Scan - Bear
       id: report
+      with:
+        output: results.sarif
       uses: bearer/bearer-action@v2
+      
     - name: Output Bear report
-      run: cat ${{ steps.report.outputs.rule_breaches }}
+      run: cat ${{ steps.report.outputs.results.sarif }}
 
 
     - name: Scan image
