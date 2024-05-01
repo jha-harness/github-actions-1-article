@@ -45,7 +45,7 @@ jobs:
       id: report
       uses: bearer/bearer-action@v2
     - name: Output Bear report
-      run: cat ${{ steps.report.outputs.sarif }}
+      run: cat ${{ steps.report.outputs.rule_breaches }}
 
 
     - name: Scan image
